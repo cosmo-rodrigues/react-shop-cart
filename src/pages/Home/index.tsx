@@ -5,7 +5,6 @@ import { ProductList } from './styles';
 import { api } from '../../services/api';
 import { formatPrice } from '../../util/format';
 import { useCart } from '../../hooks/useCart';
-import { Console } from 'console';
 
 interface Product {
   id: number;
@@ -55,10 +54,10 @@ const Home = (): JSX.Element => {
   return (
     <ProductList>
       {products.map((product) => (
-        <li id={`${product.title}`}>
+        <li key={`${product.id}`}>
           <img src={product.image} alt={product.title} />
           <strong>{product.title}</strong>
-          <span>R$ {product.price}</span>
+          <span>{product.priceFormatted}</span>
           <button
             type='button'
             data-testid='add-product-button'
